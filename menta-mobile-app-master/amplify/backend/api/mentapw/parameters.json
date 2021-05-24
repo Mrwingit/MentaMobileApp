@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "mentapw",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authmentapw2daf5f43",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

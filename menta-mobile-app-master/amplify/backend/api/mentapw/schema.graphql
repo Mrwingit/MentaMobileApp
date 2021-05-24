@@ -1,0 +1,133 @@
+type User @model {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  prefix: String
+  suffix: String
+  email: String!
+  mentor: Boolean!
+  admin: Boolean!
+  school: String!
+  bio: String
+  hometown: String
+  education: String
+  interests: [Interest]
+  connectionsAsMentee: [Connection] @connection(name: "ConnectionsAsMentee")
+  connectionsAsMentor: [Connection] @connection(name: "ConnectionsAsMentor")
+  matchesAsMentee: [Match] @connection(name: "MatchesAsMentee")
+  matchesAsMentor: [Match] @connection(name: "MatchesAsMentor")
+  requestsAsMentee: [Request] @connection(name: "RequestsAsMentee")
+  requestsAsMentor: [Request] @connection(name: "RequestsAsMentor")
+  requestsSent: [Request] @connection(name: "RequestsSent")
+  chatrooms: [UserChatroom] @connection(name: "UserChatrooms")
+  notifications: [Notification] @connection(name: "UserNotifications")
+  posts: [Post] @connection(name: "UserPosts")
+  postComments: [PostComment] @connection(name: "UserComments")
+  mentorApplication: MentorApplication @connection(name: "UsersMentorApplication")
+  photoLink: String
+  photoS3Object: S3Object
+  coverLink: String
+  coverS3Object: S3Object
+  likes: [PostLike] @connection(name: "UserLikes")
+}
+
+
+type Interest {
+  id: Int!
+  label: String!
+}
+
+# enum interests {
+#   Computer Science
+#   Finance
+#   Artisnal Cheese
+# }
+
+type Match @model {
+  id: ID!
+  mentee: User! @connection(name: "MatchesAsMentee")
+  mentor: User! @connection(name: "MatchesAsMentor")
+  deleted: Boolean!
+}
+
+type Request @model {
+  id: ID!
+  mentee: User! @connection(name: "RequestsAsMentee")
+  mentor: User! @connection(name: "RequestsAsMentor")
+  sentBy: User! @connection(name: "RequestsSent")
+  sentByUserType: String! 
+  denied: Boolean!
+  message: String
+}
+
+type Connection @model {
+  id: ID!
+  mentee: User! @connection(name: "ConnectionsAsMentee")
+  mentor: User! @connection(name: "ConnectionsAsMentor")
+}
+
+type Post @model {
+  id: ID!
+  postedBy: User! @connection(name: "UserPosts")
+  text: String!
+  comments: [PostComment] @connection(name: "PostComments")
+  likes: [PostLike] @connection(name: "PostLikes")
+  linkURL: String
+  videoURL: String
+  photoPosted: Boolean!
+  createdAt: String
+}
+
+type PostComment @model {
+  id: ID!
+  postedBy: User! @connection(name: "UserComments")
+  post: Post @connection(name: "PostComments")
+  likes: [PostLike] @connection(name: "PostCommentLikes")
+  text: String!
+  createdAt: String
+}
+
+type PostLike @model {
+  id: ID!
+  likedBy: User! @connection(name: "UserLikes")
+  post: Post @connection(name: "PostLikes")
+  comment: PostComment @connection(name: "PostCommentLikes")
+}
+
+type MentorApplication @model {
+  id: ID!
+  user: User! @connection(name: "UsersMentorApplication")
+  text: String!
+}
+
+type UserChatroom @model {
+  user: User! @connection(name: "UserChatrooms")
+  chatroom: Chatroom! @connection(name: "ChatroomUsers")
+}
+
+type Chatroom @model {
+  id: ID!
+  users: [UserChatroom] @connection(name: "ChatroomUsers")
+  messages: [ChatroomMessage] @connection(name: "ChatroomMessages")
+}
+
+type ChatroomMessage @model {
+  id: ID!
+  text: String!
+  chatroom: Chatroom! @connection(name: "ChatroomMessages")
+  createdAt: String!
+  sentFrom: User! @connection
+}
+
+type Notification @model {
+  id: ID!
+  user: User! @connection(name: "UserNotifications")
+  createdAt: String
+  type: String
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}

@@ -1,0 +1,38 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "menta-pw-prod-20191112163415-authRole",
+            "UnauthRoleArn": "arn:aws:iam::143365450227:role/menta-pw-prod-20191112163415-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::143365450227:role/menta-pw-prod-20191112163415-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "menta-pw-prod-20191112163415-deployment",
+            "UnauthRoleName": "menta-pw-prod-20191112163415-unauthRole",
+            "StackName": "menta-pw-prod-20191112163415",
+            "StackId": "arn:aws:cloudformation:us-east-1:143365450227:stack/menta-pw-prod-20191112163415/8ebb2d50-059c-11ea-96b6-0a36a8f29061",
+            "AmplifyAppId": "d1ldrrjgc6sm0h"
+        },
+        "categories": {
+            "auth": {
+                "mentapw2daf5f43": {}
+            }
+        }
+    },
+    "hailmary": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-menta-pw-hailmary-83005-authRole",
+            "UnauthRoleArn": "arn:aws:iam::143365450227:role/amplify-menta-pw-hailmary-83005-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::143365450227:role/amplify-menta-pw-hailmary-83005-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-menta-pw-hailmary-83005-deployment",
+            "UnauthRoleName": "amplify-menta-pw-hailmary-83005-unauthRole",
+            "StackName": "amplify-menta-pw-hailmary-83005",
+            "StackId": "arn:aws:cloudformation:us-east-1:143365450227:stack/amplify-menta-pw-hailmary-83005/bc974070-176b-11ea-aff2-12301089d57f",
+            "AmplifyAppId": "d1ldrrjgc6sm0h"
+        },
+        "categories": {
+            "auth": {
+                "mentapw2daf5f43": {}
+            }
+        }
+    }
+}
